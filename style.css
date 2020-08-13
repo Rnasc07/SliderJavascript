@@ -1,0 +1,30 @@
+body {
+    background: #333;
+}
+
+img {
+    max-width:100%;
+    display: block;
+}
+
+.slide {
+    max-width: 500px;
+    margin:20px auto;
+}
+
+.slide-items {
+    position:relative;
+}
+
+.slide-items > *{
+    position:absolute;
+    top:0;
+    opacity: 0;
+    pointer-events:none; /*garante que as imagens que não aparece, não link para lugar nenhum*/
+}
+
+.slide-items > .active {
+    position:relative;
+    pointer-events: initial;
+    opacity:1;
+}
