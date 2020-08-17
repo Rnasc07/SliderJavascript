@@ -28,3 +28,20 @@ img {
     pointer-events: initial;
     opacity:1;
 }
+
+.slide-thumb{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+/* Thumbs */
+.thumb {
+    background-color: yellow;
+    height:7px;
+    width:70px;
+    margin-right:10px;
+}
+
+.active-thumb{
+    background-color:green;
+}

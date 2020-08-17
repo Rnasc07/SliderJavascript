@@ -1,8 +1,10 @@
+// PAREI EM 16:30 MINUTOS
 class Slide {
     constructor(id){
         this.slide = document.querySelector(`[data-slide=${id}]`);
-        this.active = 0; // propriedade para saber qual slide é o ativo
-        this.init();
+        this.mainThumb = document.querySelector('.slide-thumb');
+        this.active = 0; // propriedade para saber qual slide é o ativo no momento
+        this.iniciar();
         //console.log(this.slide);
     }
 
@@ -10,8 +12,15 @@ class Slide {
     activeSlide(index){
         this.active = index;
         // As duas linhas abaixo => Ele remove todos os que estão com active, e adiciona somente o active em 1 específico -> útil para quando clicar em próximo ou anterior
-        this.items.forEach(item => item.classList.remove('active')); // percorre cada item no array(no caso, cada slide) e remove a classe active.
-        this.items[index].classList.add('active');//Adiciona a classe "active" na imagem selecionada, no caso a imagem 3 neste exemplo
+        this.items.forEach(item => item.classList.remove('active')); // Remove todos como active para depois aplicar a somente um
+        this.items[index].classList.add('active');//Adiciona a classe "active" na imagem específica
+
+        // Para selecionar todos os thumbs
+        this.allThumbs = document.querySelectorAll('.slide-thumb > *');
+
+        // Adicionar a classe a ativa para o thumb de acordo com o slide ativo.
+        this.allThumbs.forEach(item => item.classList.remove('active-thumb')); // Remove todos como active para depois aplicar a somente um
+        this.allThumbs[index].classList.add('active-thumb');
     }
 
     prev(){
@@ -39,9 +48,17 @@ class Slide {
         nextBtn.addEventListener('click', this.next); //Quando se passa um evento dentro de uma classe direto no addEventListener, o this do método perde a referência
     }
 
+    showThumbs(){
+        // Mostrar as thumbs de acordo com a quantidade de itens(slides)
+        for(var i = 0; i < this.items.length; i++){
+            this.mainThumb.innerHTML += "<div class='thumb'></div>";
+        }
+    }
+    
     //O que quero carregar ao iniciar a classe
-    init(){
+    iniciar(){
         this.items = this.slide.querySelectorAll('.slide-items > *'); // Selecionando todos os elementos(itens) que existe no slider
+        this.showThumbs();
         this.activeSlide(0);
         this.prev = this.prev.bind(this);
         this.next = this.next.bind(this); //Isto para o this deste método sempre fazer referência ao objeto da classe
