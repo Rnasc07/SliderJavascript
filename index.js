@@ -48,11 +48,20 @@ class Slide {
         nextBtn.addEventListener('click', this.next); //Quando se passa um evento dentro de uma classe direto no addEventListener, o this do método perde a referência
     }
 
+    mostrarAlerta(){
+        alert('Clique!');
+    }
+
     showThumbs(){
         // Mostrar as thumbs de acordo com a quantidade de itens(slides)
         for(var i = 0; i < this.items.length; i++){
-            this.mainThumb.innerHTML += "<div class='thumb'></div>";
+           this.mainThumb.innerHTML += "<div class='thumb'></div>";
         }
+    }
+
+    clickThumb(){
+        //Adicionei o evento click em cada thumb. Basta agora pegar a posição deste thumb para setar o activeSlide
+        this.allThumbs.forEach(item => item.addEventListener('click',( () => this.mostrarAlerta() )));
     }
     
     //O que quero carregar ao iniciar a classe
@@ -63,6 +72,7 @@ class Slide {
         this.prev = this.prev.bind(this);
         this.next = this.next.bind(this); //Isto para o this deste método sempre fazer referência ao objeto da classe
         this.navButtons();
+        this.clickThumb();
     }
 
 }
