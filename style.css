@@ -10,6 +10,7 @@ img {
 .slide {
     max-width: 500px;
     margin:20px auto;
+    position:relative;
 }
 
 .slide-items {
@@ -30,19 +31,37 @@ img {
 }
 
 .slide-thumb{
-    display: flex;
-    flex-flow: row wrap;
+    position:absolute;
+    left:50%;
+    transform: translate(-50%);
+    bottom:-30px;
+}
+
+.slide-prev{
+    position:absolute;
+    left:-60px;
+    top:40%;
+    cursor: pointer;
+    transform: rotate(180deg);
+}
+.slide-next{
+    position:absolute;
+    right:-60px;
+    top:40%;
+    cursor: pointer;
 }
 
 /* Thumbs */
 .thumb {
-    background-color: yellow;
-    height:7px;
-    width:70px;
+    background-color: #777;
+    float:left;
+    height:15px;
+    width:15px;
+    border-radius:50%;
     margin-right:10px;
     cursor:pointer;
 }
 
 .active-thumb{
-    background-color:green;
+    background-color:#fff;
 }
